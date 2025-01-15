@@ -1,0 +1,2 @@
+Running build.rs with working directory Ok("/home/dahl/docs/devel/bantha-package/bantha/bantha.Rcheck/00_pkg_src/bantha/src/rust")
+cargo:rerun-if-env-changed=R_CARGO_RUN_COUNTER
