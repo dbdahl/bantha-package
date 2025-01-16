@@ -1,3 +1,6 @@
+sysname <- Sys.info()[["sysname"]]
+arch <- R.version$arch
+
 dcf <- read.dcf("DESCRIPTION")
 
 system_requirements <- unname(dcf[, "SystemRequirements"])
@@ -25,7 +28,7 @@ get_version <- function(what = c("cargo", "rustc")[1]) {
   if (is.null(version_string_full)) return(NULL)
   message(sprintf("'%s --version' reports: %s", what, version_string_full))
 
-  version_string <- gsub("^(cargo|rustc) ([^ ]+) .*$", "\\2",
+  version_string <- gsub("^(cargo|rustc)\\s*([^ ]+).*$", "\\2",
                          version_string_full)
   if (version_string == version_string_full) {
     message(sprintf("Could not determine %s version based on this output:",
@@ -54,23 +57,26 @@ check_msrv <- function() {
 }
 
 original_path <- Sys.getenv("PATH")
-expanded_path <- paste0(path.expand("~/.cargo/bin"), .Platform$path.sep,
-                        original_path)
-Sys.setenv(PATH = expanded_path)
+cargo_bin_dir <- if (sysname == "Windows") {
+  normalizePath(file.path(Sys.getenv("USERPROFILE"), ".cargo", "bin"))
+} else {
+  path.expand("~/.cargo/bin")
+}
+Sys.setenv(PATH = paste0(cargo_bin_dir, .Platform$path.sep, original_path))
 
 if (!check_msrv()) {
   message("Trying again with the original PATH variable.")
   Sys.setenv(PATH = original_path)
   if (!check_msrv()) {
     message("Could not find a suitable installation of cargo and rustc.")
-    message(paste0(readLines("../../INSTALL"), collapse = "\n"))
+    message(paste0(readLines("INSTALL"), collapse = "\n"))
     stop("Exiting.")
   }
 }
 
 message("Found a suitable installation of cargo and rustc.")
 
-target <- function(sysname = Sys.info()[["sysname"]], arch = R.version$arch) {
+target_triple <- {
   if (sysname == "Linux") {
     if (arch == "aarch64") {
       "aarch64-unknown-linux-gnu"
@@ -118,13 +124,11 @@ if (cran_build) {
   jobs_option <- NULL
 }
 
-triple <- target()
-
 for (run_counter in 1:2) {
   Sys.setenv(R_CARGO_RUN_COUNTER = run_counter)
   status <- system2("cargo",
                     c("build", offline_option, "--release",
-                      "--target", triple, jobs_option))
+                      "--target", target_triple, jobs_option))
   if (status != 0) {
     message("Error running Cargo.\n")
     message(paste0(readLines("../../INSTALL"), collapse = "\n"))
@@ -132,6 +136,6 @@ for (run_counter in 1:2) {
   }
 }
 
-file.copy(sprintf("target/%s/release/librust.a", triple),
+file.copy(sprintf("target/%s/release/librust.a", target_triple),
           "..", overwrite = TRUE)
 message("Built Rust static library.")
