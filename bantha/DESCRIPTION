@@ -7,7 +7,7 @@ Authors@R: c(person(given = "David", family = "Dahl", role = c("aut", "cre"), em
     person(given = "David", family = "Tolnay", email = "dtolnay@gmail.com", role = "ctb", comment = c("Rust crates: proc-macro2, quote, syn, unicode-ident")),
     person(given = "Stjepan", family = "Glavina", email = "stjepang@gmail.com", role = "ctb", comment = c("Rust crate: fastrand")),
     person())
-Description: The BANTHA algorithm greedy search method which can be used to estimate a Bayesian network by minimizing the expected generalized structural Hamming (GSH) loss based on posterior samples from the Bayesian network distribution. See Bailey, Dahl, Andros (2024). 
+Description: The BANTHA algorithm is a greedy search method which can be used to estimate a Bayesian network by minimizing the expected generalized structural Hamming (GSH) loss based on posterior samples from the Bayesian network distribution. See Bailey, Dahl, Andros (2025). 
 License: MIT + file LICENSE | Apache License 2.0
 Imports: methods
 Depends: R (>= 4.2.0)

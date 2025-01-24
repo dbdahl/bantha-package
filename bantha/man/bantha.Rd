@@ -17,7 +17,7 @@ distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
 \eqn{2 - a}.}
 
 \item{n_candidates}{The number of starting states to use in calculating the best
-matrix estimate. Using all samples as starting states is recommended, this is
+matrix estimate. Using all samples as starting states is recommended is
 indicated by a value of zero.}
 
 \item{n_cores}{The number of CPU cores to use, i.e., the number of
@@ -39,7 +39,7 @@ bantha(choi25, a = 1)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2024).
+E. Bailey, D. B. Dahl, J. Andros (2025).
 Structure Learning of Bayesian Networks from Posterior Sample Inference.
 Unpublished manuscript. Available upon request from the authors.
 }

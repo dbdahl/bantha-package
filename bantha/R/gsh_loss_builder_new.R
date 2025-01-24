@@ -1,4 +1,6 @@
-#' Initialize Expected Generalized Structural Hamming (GSH) Loss
+#'  Initialize expected Generalized Structural Hamming (GSH) Loss builder
+#'  
+#'  Initialize expected Generalized Structural Hamming (GSH) Loss builder
 #'
 #' @param n_items Number of nodes in each network to process.
 #' @param n_samples Number of networks to process.
@@ -11,7 +13,7 @@
 #' @export
 #'
 #' @references
-#' E. Bailey, D. B. Dahl, J. Andros (2024).
+#' E. Bailey, D. B. Dahl, J. Andros (2025).
 #' Structure Learning of Bayesian Networks from Posterior Sample Inference.
 #' Unpublished manuscript. Available upon request from the authors.
 #'

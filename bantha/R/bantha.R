@@ -14,7 +14,7 @@
 #'   simultaneous calculations at any given time. A value of zero indicates to
 #'   use all cores on the system.
 #' @param n_candidates The number of starting states to use in calculating the best 
-#'   matrix estimate. Using all samples as starting states is recommended, this is 
+#'   matrix estimate. Using all samples as starting states is recommended is 
 #'   indicated by a value of zero.
 #' @return A Bayes estimate in the form of an adjacency matrix found by minimizing 
 #'   the Monte Carlo approximation of the expected GSH loss using the available 
@@ -24,7 +24,7 @@
 #' @export
 #'
 #' @references
-#' E. Bailey, D. B. Dahl, J. Andros (2024).
+#' E. Bailey, D. B. Dahl, J. Andros (2025).
 #' Structure Learning of Bayesian Networks from Posterior Sample Inference.
 #' Unpublished manuscript. Available upon request from the authors.
 #'
