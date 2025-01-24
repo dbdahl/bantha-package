@@ -2,7 +2,9 @@
 % Please edit documentation in R/gsh_loss_builder_new.R
 \name{gsh_loss_builder_new}
 \alias{gsh_loss_builder_new}
-\title{Initialize Expected Generalized Structural Hamming (GSH) Loss}
+\title{Initialize expected Generalized Structural Hamming (GSH) Loss builder
+
+Initialize expected Generalized Structural Hamming (GSH) Loss builder}
 \usage{
 gsh_loss_builder_new(n_items, n_samples, n_candidates, a = 1)
 }
@@ -21,7 +23,9 @@ distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
 A pointer to an initialized GSH builder structure to process samples.
 }
 \description{
-Initialize Expected Generalized Structural Hamming (GSH) Loss
+Initialize expected Generalized Structural Hamming (GSH) Loss builder
+
+Initialize expected Generalized Structural Hamming (GSH) Loss builder
 }
 \examples{
 data(choi25)
@@ -29,7 +33,7 @@ gsh_builder <- gsh_loss_builder_new(ncol(choi25), nrow(choi25), 4, a = 1)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2024).
+E. Bailey, D. B. Dahl, J. Andros (2025).
 Structure Learning of Bayesian Networks from Posterior Sample Inference.
 Unpublished manuscript. Available upon request from the authors.
 }

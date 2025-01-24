@@ -1,6 +1,6 @@
 #' Compute Expected Generalized Structural Hamming (GSH) Loss
 #'
-#' This function computes the expected GSH loss (Bailey, Dahl, Andros, 2024)
+#' This function computes the expected GSH loss (Bailey, Dahl, Andros, 2025)
 #'    for a given adjacency matrix.
 #'
 #' @param network A Bayesian network represented by an adjacency matrix.
@@ -8,12 +8,12 @@
 #'   probabilities of edges between each pair of nodes, which can be found using
 #'   the \code{\link{initialized_expected_gsh_loss}} function.
 #' @return The expected GSH loss for the given Bayesian network based on the posterior 
-#'   posterior probabilities of edges.
+#'   probabilities of edges.
 #'
 #' @export
 #'
 #' @references
-#' Bailey, E., Dahl, D. B., Andros, J. (2024).
+#' Bailey, E., Dahl, D. B., Andros, J. (2025).
 #' Structure Learning of Bayesian Networks from Posterior Sample Inference.
 #' Unpublished manuscript. Available upon request from the authors.
 #'

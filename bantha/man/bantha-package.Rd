@@ -5,7 +5,7 @@
 \alias{bantha-package}
 \title{bantha: Bayesian Network Thresholding Heuristic Algorithm (BANTHA)}
 \description{
-The BANTHA algorithm greedy search method which can be used to estimate a Bayesian network by minimizing the expected generalized structural Hamming (GSH) loss based on posterior samples from the Bayesian network distribution. See Bailey, Dahl, Andros (2024).
+The BANTHA algorithm is a greedy search method which can be used to estimate a Bayesian network by minimizing the expected generalized structural Hamming (GSH) loss based on posterior samples from the Bayesian network distribution. See Bailey, Dahl, Andros (2025).
 }
 \author{
 \strong{Maintainer}: David Dahl \email{dahl@stat.byu.edu} (\href{https://orcid.org/0000-0002-8173-1547}{ORCID})
