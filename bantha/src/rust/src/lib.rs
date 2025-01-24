@@ -4,6 +4,8 @@ use fastrand::Rng;
 use rayon::prelude::*;
 use rayon::ThreadPool;
 use roxido::*;
+use std::sync::atomic::{AtomicBool, Ordering};
+use std::sync::Arc;
 use walltime::TicToc;
 
 // Integer sqrt root using a binary search algorithm
@@ -506,6 +508,7 @@ fn bantha_core<'a>(
     pc: &'a Pc,
 ) -> &'a RMatrix<i32> {
     timers.overall.tic();
+    let found = Arc::new(AtomicBool::new(false));
     let n_candidates = candidates.len();
     // Compute
     timers.search.tic();
@@ -523,8 +526,14 @@ fn bantha_core<'a>(
             let mapped = candidates.into_par_iter().map_init(
                 || Rng::new(),
                 |rng, mut dag| {
+                    if found.load(Ordering::Relaxed) {
+                        return (dag, f64::INFINITY, u32::MAX);
+                    }
                     let not_optimal_counter = engine_optimize(&mut dag, &gsh, rng);
                     let expected_loss = gsh.expected_loss(&dag.vec()).unwrap();
+                    if not_optimal_counter == 0 {
+                        found.store(true, Ordering::Relaxed);
+                    }
                     (dag, expected_loss, not_optimal_counter)
                 },
             );
