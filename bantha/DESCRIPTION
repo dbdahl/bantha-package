@@ -1,6 +1,6 @@
 Package: bantha
 Title: Bayesian Network Thresholding Heuristic Algorithm (BANTHA)
-Version: 0.1.14
+Version: 0.1.15
 Authors@R: c(person(given = "David", family = "Dahl", role = c("aut", "cre"), email = "dahl@stat.byu.edu", comment = c(ORCID = "0000-0002-8173-1547")),
     person(given = "Alex", family = "Crichton", email = "alex@alexcrichton.com", role = "ctb", comment = c("Rust crate: proc-macro2")),
     person(given = "David B.", family = "Dahl", email = "dahl@stat.byu.edu", role = "ctb", comment = c("Rust crates: roxido, roxido_macro")),
