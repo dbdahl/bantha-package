@@ -12,7 +12,8 @@ gsh_loss_builder_process(x, gsh_loss_builder)
 \item{gsh_loss_builder}{A pointer to a GSH builder structure.}
 }
 \description{
-Add Bayesian networks to GSH builder structure
+Add a Bayesian network represented by an adjacency matrix to an existing GSH
+builder structure
 }
 \examples{
 data(choi25)

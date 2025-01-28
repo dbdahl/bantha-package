@@ -4,7 +4,7 @@
 \alias{gsh_loss_builder_new}
 \title{Initialize expected Generalized Structural Hamming (GSH) Loss builder
 
-Initialize expected Generalized Structural Hamming (GSH) Loss builder}
+Initialize an expected GSH Loss builder to process samples one at a time.}
 \usage{
 gsh_loss_builder_new(n_items, n_samples, n_candidates, a = 1)
 }
@@ -25,7 +25,7 @@ A pointer to an initialized GSH builder structure to process samples.
 \description{
 Initialize expected Generalized Structural Hamming (GSH) Loss builder
 
-Initialize expected Generalized Structural Hamming (GSH) Loss builder
+Initialize an expected GSH Loss builder to process samples one at a time.
 }
 \examples{
 data(choi25)

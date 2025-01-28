@@ -1,21 +1,24 @@
 #' Bayesian Network Thresholding Heuristic Algorithm (BANTHA)
 #'
 #' This function provides a Bayesian network to summarize a network distribution
-#' using the BANTHA method (Bailey, Dahl, Andros 2024). 
+#' using the BANTHA method (Bailey, Dahl, Andros 2025). 
 #'
 #' @param samples An object of class \sQuote{array} containing posterior samples
 #'   from a Bayesian network distribution. Each array element encodes one
-#'   network as a binary adjacency matrix, with nodes in the rows and columns. 
-#'   A value of 1 in cell (i, j) indicates a directed edge from node i to node j.
+#'   network as a binary adjacency matrix, where the rows and columns represent
+#'   nodes. A value of 1 in cell \code{(i, j)} of an adjacency matrix indicates 
+#'   a directed edge from node \code{i} to node \code{j}. The third dimension 
+#'   of the array corresponds to different adjacency matrices (samples) from the 
+#'   posterior distribution.
 #' @param a A numeric scalar for the cost parameter of generalized Hamming
 #'   distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
 #'   \eqn{2 - a}.
 #' @param n_cores The number of CPU cores to use, i.e., the number of
 #'   simultaneous calculations at any given time. A value of zero indicates to
 #'   use all cores on the system.
-#' @param n_candidates The number of starting states to use in calculating the best 
-#'   matrix estimate. Using all samples as starting states is recommended is 
-#'   indicated by a value of zero.
+#' @param n_candidates The number of possible starting states to use in calculating 
+#'   the best matrix estimate. Using all samples as starting states is indicated
+#'   by a value of zero.
 #' @return A Bayes estimate in the form of an adjacency matrix found by minimizing 
 #'   the Monte Carlo approximation of the expected GSH loss using the available 
 #'   samples.

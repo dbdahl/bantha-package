@@ -4,9 +4,12 @@
 #'   based on the given samples and value of the parameter a.
 #
 #' @param samples An object of class \sQuote{array} containing posterior samples
-#'   from a Bayesian network distribution. Each array element encodes a
-#'   Bayesian network as a binary adjacency matrix, with nodes in the rows and columns. 
-#'   A value of 1 in cell (i, j) indicates a directed edge from node i to node j.
+#'   from a Bayesian network distribution. Each array element encodes one
+#'   network as a binary adjacency matrix, where the rows and columns represent
+#'   nodes. A value of 1 in cell \code{(i, j)} of an adjacency matrix indicates 
+#'   a directed edge from node \code{i} to node \code{j}. The third dimension 
+#'   of the array corresponds to different adjacency matrices (samples) from the 
+#'   posterior distribution.
 #' @param a A numeric scalar for the cost parameter of generalized Hamming
 #'   distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
 #'   \eqn{2 - a}.

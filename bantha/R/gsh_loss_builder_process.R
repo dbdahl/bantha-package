@@ -1,6 +1,7 @@
 #' Add Bayesian networks to GSH builder structure
 #'
-#' Add Bayesian networks to GSH builder structure
+#' Add a Bayesian network represented by an adjacency matrix to an existing GSH 
+#' builder structure
 #'
 #' @param x A network as an adjacency matrix.
 #' @param gsh_loss_builder A pointer to a GSH builder structure.

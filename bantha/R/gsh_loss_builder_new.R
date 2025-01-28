@@ -1,6 +1,6 @@
 #'  Initialize expected Generalized Structural Hamming (GSH) Loss builder
 #'  
-#'  Initialize expected Generalized Structural Hamming (GSH) Loss builder
+#'  Initialize an expected GSH Loss builder to process samples one at a time.
 #'
 #' @param n_items Number of nodes in each network to process.
 #' @param n_samples Number of networks to process.
