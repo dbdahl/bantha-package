@@ -4,24 +4,32 @@
 \alias{bantha}
 \title{Bayesian Network Thresholding Heuristic Algorithm (BANTHA)}
 \usage{
-bantha(samples, a = 1, n_candidates = 0, n_cores = 0)
+bantha(samples, a = 1, n_candidates = 0, candidates = NULL, n_cores = 0)
 }
 \arguments{
-\item{samples}{An object of class \sQuote{array} containing posterior samples
+\item{samples}{One of three possible values:
+First option: An object of class \sQuote{array} containing posterior samples
 from a Bayesian network distribution. Each array element encodes one
 network as a binary adjacency matrix, where the rows and columns represent
 nodes. A value of 1 in cell \code{(i, j)} of an adjacency matrix indicates
 a directed edge from node \code{i} to node \code{j}. The third dimension
 of the array corresponds to different adjacency matrices (samples) from the
-posterior distribution.}
+posterior distribution.  Second option: An object returned by the function
+\code{\link{gsh_loss_builder_new}} and used in calls to the function
+\code{\link{gsh_loss_builder_process}}.  Third option: An object returned by
+the function \code{\link{compute_expected_gsh_loss}}.}
 
 \item{a}{A numeric scalar for the cost parameter of generalized Hamming
 distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
-\eqn{2 - a}.}
+\eqn{2 - a}.  Do not set unless \code{samples} above is the type from the first option.}
 
 \item{n_candidates}{The number of possible starting states to use in calculating
 the best matrix estimate. Using all samples as starting states is indicated
-by a value of zero.}
+by a value of zero.  Do not set unless \code{samples} above is the type from the first option.}
+
+\item{candidates}{A three dimensional array (like that described for \code{samples})
+the best matrix estimate. Using all samples as starting states is indicated
+by a value of zero.  Do not set unless \code{samples} above is the type from the third option.}
 
 \item{n_cores}{The number of CPU cores to use, i.e., the number of
 simultaneous calculations at any given time. A value of zero indicates to

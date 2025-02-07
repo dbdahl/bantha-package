@@ -437,12 +437,17 @@ fn sample_binomial(n: usize, p: f64, u1: f64, u2: f64) -> usize {
 }
 
 #[roxido]
+fn get_external_ptr_tag(x: &RExternalPtr) {
+    unsafe { crate::rbindings::R_ExternalPtrTag(x.sexp()) }
+}
+
+#[roxido]
 fn is_dag(dag: &RMatrix) {
     DagAdjacencyVector::from_r(dag, pc).is_ok()
 }
 
 #[roxido]
-fn initialized_expected_gsh_loss(samples: &RArray, a: f64) {
+fn initialize_expected_gsh_loss(samples: &RArray, a: f64) {
     let gsh = Gsh::from_r(samples, a, pc);
     RExternalPtr::encode(gsh, "gsh", pc)
 }
@@ -606,6 +611,47 @@ fn bantha_big_data(gsh_builder: &mut RExternalPtr, n_cores: usize) {
         .build()
         .unwrap();
     bantha_core(&gsh, candidates, timers, rng, pool, n_cores, pc)
+}
+
+#[roxido]
+fn bantha_psm(gsh: &mut RExternalPtr, candidates: &RArray, n_cores: usize) {
+    let gsh = RExternalPtr::decode_ref::<Gsh>(gsh);
+    let candidates = candidates.to_i32(pc);
+    let slice = candidates.slice();
+    let dim = candidates.dim();
+    if dim.len() != 3 {
+        stop!("'candidates' must be three dimensional");
+    }
+    let n_items = dim[0];
+    if n_items != dim[1] {
+        stop!("The first two elements of 'x' should give a square matrix")
+    }
+    let n_samples = dim[2];
+    let mut candidates2: Vec<DagAdjacencyVector> = Vec::with_capacity(n_samples);
+    let len = n_items.pow(2);
+    for i in 0..n_samples {
+        let Ok(dag) = DagAdjacencyVector::from_slice_with_n(&slice[(i * len)..((i + 1) * len)], n_items) else {
+            stop!("Element {} in 'candidates' is not a DAG", i);
+        };
+        candidates2.push(dag);
+    }
+    let timers = Timers::new();
+    //  Prepare multithreadhing
+    let seed = u64::from_le_bytes(R::random_bytes::<8>());
+    let rng = Rng::with_seed(seed);
+    let n_cores = if n_cores != 0 {
+        n_cores
+    } else {
+        match std::thread::available_parallelism() {
+            Ok(x) => x.get(),
+            Err(_) => 0,
+        }
+    };
+    let pool = rayon::ThreadPoolBuilder::new()
+        .num_threads(n_cores)
+        .build()
+        .unwrap();
+    bantha_core(&gsh, candidates2, timers, rng, pool, n_cores, pc)
 }
 
 #[roxido]
