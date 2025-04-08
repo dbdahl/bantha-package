@@ -1,7 +1,0 @@
-name	user	system	elapsed
-bantha	0.032	0.022	0.023	
-compute_expected_gsh_loss	0.010	0.001	0.011	
-gsh_loss_builder_new	0.004	0.001	0.005	
-gsh_loss_builder_process	0.003	0.001	0.005	
-initialized_expected_gsh_loss	0.007	0.000	0.008	
-is_dag	0.000	0.000	0.001	

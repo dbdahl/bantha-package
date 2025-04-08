@@ -1,8 +1,10 @@
 /*.tar.gz
+/*.Rcheck
 /.Rproj.user
 /.Rhistory
 /.RData
 /.Ruserdata
+/inst/cargo.log
 /R/roxido.R
 /src/shim.o
 /src/dummy.o

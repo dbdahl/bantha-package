@@ -14,7 +14,7 @@ network as a binary adjacency matrix, where the rows and columns represent
 nodes. A value of 1 in cell \code{(i, j)} of an adjacency matrix indicates
 a directed edge from node \code{i} to node \code{j}. The third dimension
 of the array corresponds to different adjacency matrices (samples) from the
-posterior distribution.  Second option: An symmetric matrix whose \code({i, j)}
+posterior distribution.  Second option: An symmetric matrix whose \code{(i, j)}
 element gives the relative frequency in which there is an edge from node
 \code{i} to node \code{j}.}
 
@@ -33,7 +33,7 @@ based on the given samples and value of the parameter a.
 }
 \examples{
 data(choi25)
-initialized_expected_gsh_loss(choi25, a = 1)
+initialize_expected_gsh_loss(choi25, a = 1)
 
 }
 \references{

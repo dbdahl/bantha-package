@@ -11,7 +11,7 @@ compute_expected_gsh_loss(network, gsh)
 
 \item{gsh}{A pointer to an initialized GSH structure containing the posterior
 probabilities of edges between each pair of nodes, which can be found using
-the \code{\link{initialized_expected_gsh_loss}} function.}
+the \code{\link{initialize_expected_gsh_loss}} function.}
 }
 \value{
 The expected GSH loss for the given Bayesian network based on the posterior
@@ -23,7 +23,7 @@ for a given adjacency matrix.
 }
 \examples{
 data(choi25)
-gsh <- initialized_expected_gsh_loss(choi25, a = 1)
+gsh <- initialize_expected_gsh_loss(choi25, a = 1)
 compute_expected_gsh_loss(choi25[,,1], gsh)
 }
 \references{
