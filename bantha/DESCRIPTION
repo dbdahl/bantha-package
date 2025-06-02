@@ -15,8 +15,8 @@ Description: The BANTHA algorithm is a greedy search method which can be used to
 License: MIT + file LICENSE | Apache License 2.0
 Imports: methods
 Depends: R (>= 4.2.0)
-SystemRequirements: Cargo (Rust's package manager), rustc (>= 1.81.0)
+SystemRequirements: Cargo (Rust's package manager), rustc (>= 1.77.2)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-Config/Roxido/Version: 25.04.11
+Config/Roxido/Version: 25.05.10
