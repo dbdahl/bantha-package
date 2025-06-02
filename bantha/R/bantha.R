@@ -1,7 +1,7 @@
 #' Bayesian Network Thresholding Heuristic Algorithm (BANTHA)
 #'
 #' This function provides a Bayesian network to summarize a network distribution
-#' using the BANTHA method (Bailey, Dahl, Andros 2025). 
+#' using the BANTHA method (Dahl, Bailey, Harris, Andros 2025). 
 #'
 #' @param samples One of three possible values:
 #'   First option: An object of class \sQuote{array} containing posterior samples
@@ -15,7 +15,7 @@
 #'   \code{\link{gsh_loss_builder_process}}.  Third option: An object returned by
 #'   the function \code{\link{compute_expected_gsh_loss}}.
 #' @param a A numeric scalar for the cost parameter of generalized Hamming
-#'   distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
+#'   distance used in the GSH loss.  The other cost parameter, \eqn{b}, is equal to
 #'   \eqn{2 - a}.  Do not set unless \code{samples} above is the type from the first option.
 #' @param n_candidates The number of possible starting states to use in calculating 
 #'   the best matrix estimate. Using all samples as starting states is indicated
@@ -34,9 +34,8 @@
 #' @export
 #'
 #' @references
-#' E. Bailey, D. B. Dahl, J. Andros (2025).
-#' Structure Learning of Bayesian Networks from Posterior Sample Inference.
-#' Unpublished manuscript. Available upon request from the authors.
+#' D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+#' <https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf>.
 #'
 #' @examples
 #' data(choi25)

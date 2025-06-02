@@ -18,16 +18,16 @@ The expected GSH loss for the given Bayesian network based on the posterior
 probabilities of edges.
 }
 \description{
-This function computes the expected GSH loss (Bailey, Dahl, Andros, 2025)
+This function computes the expected GSH loss (Dahl, Bailey, Harris, Andros, 2025)
 for a given adjacency matrix.
 }
 \examples{
 data(choi25)
 gsh <- initialize_expected_gsh_loss(choi25, a = 1)
 compute_expected_gsh_loss(choi25[,,1], gsh)
+
 }
 \references{
-Bailey, E., Dahl, D. B., Andros, J. (2025).
-Structure Learning of Bayesian Networks from Posterior Sample Inference.
-Unpublished manuscript. Available upon request from the authors.
+D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+\url{https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf}.
 }

@@ -1,7 +1,7 @@
-#' Add Bayesian networks to GSH builder structure
+#' Add Bayesian Networks to GSH Builder Structure
 #'
-#' Add a Bayesian network represented by an adjacency matrix to an existing GSH 
-#' builder structure
+#' This function adds a Bayesian network represented by an adjacency matrix to an existing GSH 
+#' builder structure.
 #'
 #' @param x A network as an adjacency matrix.
 #' @param gsh_loss_builder A pointer to a GSH builder structure.
@@ -9,9 +9,8 @@
 #' @export
 #'
 #' @references
-#' E. Bailey, D. B. Dahl, J. Andros (2025).
-#' Structure Learning of Bayesian Networks from Posterior Sample Inference.
-#' Unpublished manuscript. Available upon request from the authors.
+#' D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+#' <https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf>.
 #'
 #' @examples
 #' data(choi25)

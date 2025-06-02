@@ -20,7 +20,7 @@ posterior distribution.  Second option: An object returned by the function
 the function \code{\link{compute_expected_gsh_loss}}.}
 
 \item{a}{A numeric scalar for the cost parameter of generalized Hamming
-distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
+distance used in the GSH loss.  The other cost parameter, \eqn{b}, is equal to
 \eqn{2 - a}.  Do not set unless \code{samples} above is the type from the first option.}
 
 \item{n_candidates}{The number of possible starting states to use in calculating
@@ -42,7 +42,7 @@ samples.
 }
 \description{
 This function provides a Bayesian network to summarize a network distribution
-using the BANTHA method (Bailey, Dahl, Andros 2025).
+using the BANTHA method (Dahl, Bailey, Harris, Andros 2025).
 }
 \examples{
 data(choi25)
@@ -50,7 +50,6 @@ bantha(choi25, a = 1)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2025).
-Structure Learning of Bayesian Networks from Posterior Sample Inference.
-Unpublished manuscript. Available upon request from the authors.
+D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+\url{https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf}.
 }

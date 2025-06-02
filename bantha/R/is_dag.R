@@ -19,6 +19,7 @@
 #'                          0, 0, 1,
 #'                          1, 0, 0), nrow = 3, byrow = TRUE)
 #' is_dag(cycle_matrix)
+#'
 is_dag <- function(candidate) {
   .Call(.is_dag, candidate)
 }

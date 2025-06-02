@@ -19,7 +19,7 @@ element gives the relative frequency in which there is an edge from node
 \code{i} to node \code{j}.}
 
 \item{a}{A numeric scalar for the cost parameter of generalized Hamming
-distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
+distance used in the GSH loss.  The other cost parameter, \eqn{b}, is equal to
 \eqn{2 - a}.}
 }
 \value{
@@ -28,7 +28,7 @@ probabilities of edges between each pair of nodes, which can be found using
 the 'initialized_expected_gsh_loss' function.
 }
 \description{
-This function initializes the expected GSH loss (Bailey, Dahl, Andros, 2024)
+This function initializes the expected GSH loss (Dahl, Bailey, Harris, Andros, 2025)
 based on the given samples and value of the parameter a.
 }
 \examples{
@@ -37,7 +37,6 @@ initialize_expected_gsh_loss(choi25, a = 1)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2024).
-Structure Learning of Bayesian Networks from Posterior Sample Inference.
-Unpublished manuscript. Available upon request from the authors.
+D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+\url{https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf}.
 }

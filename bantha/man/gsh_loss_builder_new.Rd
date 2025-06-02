@@ -2,7 +2,7 @@
 % Please edit documentation in R/gsh_loss_builder_new.R
 \name{gsh_loss_builder_new}
 \alias{gsh_loss_builder_new}
-\title{Initialize expected Generalized Structural Hamming (GSH) Loss builder
+\title{Initialize Expected Generalized Structural Hamming (GSH) Loss Builder
 
 Initialize an expected GSH Loss builder to process samples one at a time.}
 \usage{
@@ -16,14 +16,14 @@ gsh_loss_builder_new(n_items, n_samples, n_candidates, a = 1)
 \item{n_candidates}{Number of networks to sweeten.}
 
 \item{a}{A numeric scalar for the cost parameter of generalized Hamming
-distance used in GSH loss.  The other cost parameter, \eqn{b}, is equal to
+distance used in the GSH loss.  The other cost parameter, \eqn{b}, is equal to
 \eqn{2 - a}.}
 }
 \value{
 A pointer to an initialized GSH builder structure to process samples.
 }
 \description{
-Initialize expected Generalized Structural Hamming (GSH) Loss builder
+Initialize Expected Generalized Structural Hamming (GSH) Loss Builder
 
 Initialize an expected GSH Loss builder to process samples one at a time.
 }
@@ -33,7 +33,6 @@ gsh_builder <- gsh_loss_builder_new(ncol(choi25), nrow(choi25), 4, a = 1)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2025).
-Structure Learning of Bayesian Networks from Posterior Sample Inference.
-Unpublished manuscript. Available upon request from the authors.
+D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+\url{https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf}.
 }

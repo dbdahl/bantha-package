@@ -2,7 +2,7 @@
 % Please edit documentation in R/gsh_loss_builder_process.R
 \name{gsh_loss_builder_process}
 \alias{gsh_loss_builder_process}
-\title{Add Bayesian networks to GSH builder structure}
+\title{Add Bayesian Networks to GSH Builder Structure}
 \usage{
 gsh_loss_builder_process(x, gsh_loss_builder)
 }
@@ -12,8 +12,8 @@ gsh_loss_builder_process(x, gsh_loss_builder)
 \item{gsh_loss_builder}{A pointer to a GSH builder structure.}
 }
 \description{
-Add a Bayesian network represented by an adjacency matrix to an existing GSH
-builder structure
+This function adds a Bayesian network represented by an adjacency matrix to an existing GSH
+builder structure.
 }
 \examples{
 data(choi25)
@@ -22,7 +22,6 @@ gsh_loss_builder_process(choi25[,,1], gsh_builder)
 
 }
 \references{
-E. Bailey, D. B. Dahl, J. Andros (2025).
-Structure Learning of Bayesian Networks from Posterior Sample Inference.
-Unpublished manuscript. Available upon request from the authors.
+D. B. Dahl, E. Bailey, D. Harris, J. Andros (2025), Bayesian Network Estimation from Posterior Samples,
+\url{https://dahl.byu.edu/papers/dahl_bailey_harris_andros.pdf}.
 }
