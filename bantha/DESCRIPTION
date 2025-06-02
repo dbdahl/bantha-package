@@ -5,7 +5,7 @@ Authors@R: c(
     person(given = "David", family = "Dahl", role = c("aut", "cre"), email = "dahl@stat.byu.edu", comment = c(ORCID = "0000-0002-8173-1547")),
     person(given = "Elissa", family = "Bailey", role = c("aut"), email = "elissafish@gmail.com"),
     person(given = "Daisy", family = "Harris", role = c("aut"), email = "dasharon14@gmail.com"),
-    person(given = "Jacob", family = "Andros", role = c("aut"), email = "androsrj@gmail.com", comment = c(ORCID = "0000-0002-1289-385X")),
+    person(given = "R. Jacob", family = "Andros", role = c("aut"), email = "androsrj@gmail.com", comment = c(ORCID = "0000-0002-1289-385X")),
     person(given = "Alex", family = "Crichton", email = "alex@alexcrichton.com", role = "ctb", comment = c("Rust crate: proc-macro2")),
     person(given = "David B.", family = "Dahl", email = "dahl@stat.byu.edu", role = "ctb", comment = c("Rust crates: roxido, roxido_macro")),
     person(given = "David", family = "Tolnay", email = "dtolnay@gmail.com", role = "ctb", comment = c("Rust crates: proc-macro2, quote, syn, unicode-ident")),
