@@ -14,15 +14,11 @@ Authors:
 \itemize{
   \item Elissa Bailey \email{elissafish@gmail.com}
   \item Daisy Harris \email{dasharon14@gmail.com}
-  \item Jacob Andros \email{androsrj@gmail.com} (\href{https://orcid.org/0000-0002-1289-385X}{ORCID})
 }
 
 Other contributors:
 \itemize{
-  \item Alex Crichton \email{alex@alexcrichton.com} (Rust crate: proc-macro2) [contributor]
-  \item David B. Dahl \email{dahl@stat.byu.edu} (Rust crates: roxido, roxido_macro) [contributor]
-  \item David Tolnay \email{dtolnay@gmail.com} (Rust crates: proc-macro2, quote, syn, unicode-ident) [contributor]
-  \item Stjepan Glavina \email{stjepang@gmail.com} (Rust crate: fastrand) [contributor]
+  \item Authors of the dependency Rust crates (see inst/AUTHORS file for details) [contributor]
 }
 
 }

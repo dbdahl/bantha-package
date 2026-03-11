@@ -2,11 +2,11 @@
 roxido_registration!();
 
 use fastrand::Rng;
-use rayon::prelude::*;
 use rayon::ThreadPool;
+use rayon::prelude::*;
 use roxido::*;
-use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Arc;
+use std::sync::atomic::{AtomicBool, Ordering};
 use walltime::TicToc;
 
 // Integer sqrt root using a binary search algorithm
@@ -303,14 +303,14 @@ impl GshBuilder {
                 *y += 1;
             }
         }
-        if let Some(&index) = self.index_of_candidates.last() {
-            if self.n_samples_processed == index {
-                let Ok(dag) = DagAdjacencyVector::from_slice_with_n(x, self.n_items) else {
-                    return Err("Network is not a DAG.");
-                };
-                self.index_of_candidates.pop();
-                self.candidates.push(dag);
-            }
+        if let Some(&index) = self.index_of_candidates.last()
+            && self.n_samples_processed == index
+        {
+            let Ok(dag) = DagAdjacencyVector::from_slice_with_n(x, self.n_items) else {
+                return Err("Network is not a DAG.");
+            };
+            self.index_of_candidates.pop();
+            self.candidates.push(dag);
         }
         self.n_samples_processed += 1;
         Ok(())
@@ -340,11 +340,11 @@ impl GshBuilder {
                     self.counts[index] += 1;
                 }
             }
-            if let Some(&index) = self.index_of_candidates.last() {
-                if self.n_samples_processed == index {
-                    self.index_of_candidates.pop();
-                    self.candidates.push(dag.clone());
-                }
+            if let Some(&index) = self.index_of_candidates.last()
+                && self.n_samples_processed == index
+            {
+                self.index_of_candidates.pop();
+                self.candidates.push(dag.clone());
             }
             counter += 1;
             self.n_samples_processed += 1;
@@ -410,19 +410,17 @@ fn engine_random<A: Dag>(dag: &mut A, prob: f64, rng: &mut Rng) -> u32 {
     let mut not_optimal_counter = 0;
     for index in which {
         let (parent, child) = dag.unindex(index);
-        if !dag.delete_edge(parent, child) {
-            if !dag.add_edge(parent, child) {
-                not_optimal_counter += 1
-            }
+        if !dag.delete_edge(parent, child) && !dag.add_edge(parent, child) {
+            not_optimal_counter += 1
         }
     }
     not_optimal_counter
 }
 
 fn sample_binomial(n: usize, p: f64, u1: f64, u2: f64) -> usize {
-    debug_assert!(p >= 0.0 && p <= 1.0, "p must be in [0, 1]");
-    debug_assert!(u1 >= 0.0 && u1 <= 1.0, "u1 must be in [0, 1]");
-    debug_assert!(u2 >= 0.0 && u2 <= 1.0, "u2 must be in [0, 1]");
+    debug_assert!((0.0..=1.0).contains(&p), "p must be in [0, 1]");
+    debug_assert!((0.0..=1.0).contains(&u1), "u1 must be in [0, 1]");
+    debug_assert!((0.0..=1.0).contains(&u2), "u2 must be in [0, 1]");
     if n == 0 || p == 0.0 {
         return 0;
     }
@@ -520,7 +518,7 @@ fn bantha_core<'a>(
     timers.search.tic();
     let (dag, expected_loss, not_optimal_counter) = if n_cores == 1 {
         let mapped = candidates.into_iter().map(|mut dag| {
-            let not_optimal_counter = engine_optimize(&mut dag, &gsh, &mut rng);
+            let not_optimal_counter = engine_optimize(&mut dag, gsh, &mut rng);
             let expected_loss = gsh.expected_loss(&dag.vec()).unwrap();
             (dag, expected_loss, not_optimal_counter)
         });
@@ -529,20 +527,19 @@ fn bantha_core<'a>(
             .unwrap()
     } else {
         pool.install(|| {
-            let mapped = candidates.into_par_iter().map_init(
-                || Rng::new(),
-                |rng, mut dag| {
+            let mapped = candidates
+                .into_par_iter()
+                .map_init(Rng::new, |rng, mut dag| {
                     if found.load(Ordering::Relaxed) {
                         return (dag, f64::INFINITY, u32::MAX);
                     }
-                    let not_optimal_counter = engine_optimize(&mut dag, &gsh, rng);
+                    let not_optimal_counter = engine_optimize(&mut dag, gsh, rng);
                     let expected_loss = gsh.expected_loss(&dag.vec()).unwrap();
                     if not_optimal_counter == 0 {
                         found.store(true, Ordering::Relaxed);
                     }
                     (dag, expected_loss, not_optimal_counter)
-                },
-            );
+                });
             mapped
                 .min_by(|a, b| a.1.partial_cmp(&b.1).unwrap())
                 .unwrap()
@@ -611,7 +608,7 @@ fn bantha_big_data(gsh_builder: &mut RExternalPtr, n_cores: usize) {
         .num_threads(n_cores)
         .build()
         .unwrap();
-    bantha_core(&gsh, candidates, timers, rng, pool, n_cores, pc)
+    bantha_core(gsh, candidates, timers, rng, pool, n_cores, pc)
 }
 
 #[roxido]
@@ -631,7 +628,9 @@ fn bantha_psm(gsh: &mut RExternalPtr, candidates: &RArray, n_cores: usize) {
     let mut candidates2: Vec<DagAdjacencyVector> = Vec::with_capacity(n_samples);
     let len = n_items.pow(2);
     for i in 0..n_samples {
-        let Ok(dag) = DagAdjacencyVector::from_slice_with_n(&slice[(i * len)..((i + 1) * len)], n_items) else {
+        let Ok(dag) =
+            DagAdjacencyVector::from_slice_with_n(&slice[(i * len)..((i + 1) * len)], n_items)
+        else {
             stop!("Element {} in 'candidates' is not a DAG", i);
         };
         candidates2.push(dag);
@@ -652,7 +651,7 @@ fn bantha_psm(gsh: &mut RExternalPtr, candidates: &RArray, n_cores: usize) {
         .num_threads(n_cores)
         .build()
         .unwrap();
-    bantha_core(&gsh, candidates2, timers, rng, pool, n_cores, pc)
+    bantha_core(gsh, candidates2, timers, rng, pool, n_cores, pc)
 }
 
 #[roxido]
